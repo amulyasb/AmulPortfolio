@@ -1,3 +1,9 @@
+(function () {
+            emailjs.init({
+                publicKey: "K2uJniHUV2-Yue5hN",
+            });
+        })();
+
 function sendMail(){
     const parms = {
         name : document.querySelector("#name").value,
@@ -15,6 +21,4 @@ function sendMail(){
             alert("Unable to send Contact Form");
             location.reload(); 
         });
-
-    // emailjs.send("service_50lxbgs","template_b39bd3n",parms).then(() => alert("Contact Form Sent Successfully, Thank You!").catch(() => alert("Unable to sent Contact Form")));
 }

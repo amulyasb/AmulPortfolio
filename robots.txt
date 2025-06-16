@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /files/
+Disallow: /js/email.js
+Sitemap: https://www.amulbaidhya.com.np/sitemap.xml
