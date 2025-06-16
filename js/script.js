@@ -141,6 +141,6 @@ window.addEventListener('load', function() {
         // Hide loader
         document.getElementById('loader').style.display = 'none';
         // Show content
-        document.getElementById('content').classList.add('show');
-    }, 2000); // Adjust the delay as needed
+        document.getElementById('header').classList.add('show');
+    }, 1000); // Adjust the delay as needed
 });
