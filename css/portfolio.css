@@ -69,7 +69,9 @@ h6 {
     color: var(--primary-color);
     padding: 8rem 0;
     text-align: center;
-    position: relative
+    position: relative;
+    content-visibility: auto !important;
+    contain-intrinsic-size: 800px !important;
 }
 
 #header h2 {
