@@ -134,3 +134,13 @@ document.querySelectorAll('.view-more-btn').forEach(button => {
         button.textContent = desc.classList.contains('expanded') ? 'View Less' : 'View More';
     });
 });
+
+window.addEventListener('load', function() {
+    // Simulate loading delay (e.g., 2 seconds)
+    setTimeout(function() {
+        // Hide loader
+        document.getElementById('loader').style.display = 'none';
+        // Show content
+        document.getElementById('content').classList.add('show');
+    }, 2000); // Adjust the delay as needed
+});
