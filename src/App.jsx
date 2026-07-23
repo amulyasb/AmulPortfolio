@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import FluidBackground from './FluidBackground.jsx';
 
 const headerMessages = ['A React Native Developer', 'Welcome to My Portfolio'];
 
@@ -8,7 +9,7 @@ const projects = [
     subtitle: '(Academic Task)',
     image: '/images/roomrental.webp',
     alt: 'Room Rental web App Using Django, HTML, CSS, JS, Bootstrap',
-    tech: ['Django', 'HTML5', 'CSS3', 'Bootstrap', 'PostgreSQL'],
+    tech: ['Django', 'Channels', 'HTML5', 'CSS3', 'Bootstrap', 'PostgreSQL'],
     summary:
       'A full-featured platform for renting rooms, connecting sellers and customers with real-time communication and booking.',
     description:
@@ -29,7 +30,7 @@ const projects = [
     title: 'Trip Manager',
     image: '/images/TripManager.webp',
     alt: 'Trip Manager mobile app built with React Native',
-    tech: ['React Native', 'JavaScript', 'Mobile App'],
+    tech: ['React Native', 'Expo', 'NativeWind'],
     summary: 'React Native app for trip planning: itinerary organization, activity planning, and expense tracking.',
     description:
       'A React Native mobile app for managing trips with itinerary organization, activity planning, and expense tracking.',
@@ -55,7 +56,7 @@ const navLinks = [
   { id: 'contact', label: 'Contact' },
 ];
 
-const heroTech = ['React Native', 'Expo', 'NativeWind', 'React', 'JavaScript', 'Bootstrap', 'Django', 'PostgreSQL'];
+const heroTech = ['React Native', 'Expo', 'NativeWind', 'TanStack Query', 'React', 'JavaScript', 'Bootstrap', 'Django', 'PostgreSQL'];
 
 const heroFloats = ['React Native', 'Expo', 'NativeWind'];
 
@@ -79,7 +80,7 @@ const skillGroups = [
     title: 'Mobile Development',
     description: 'Cross-platform apps with a native feel.',
     icon: 'fa-mobile-screen-button',
-    skills: ['React Native', 'Expo', 'NativeWind'],
+    skills: ['React Native', 'Expo', 'NativeWind', 'TanStack Query'],
   },
   {
     title: 'Frontend Foundations',
@@ -102,7 +103,7 @@ const experience = [
     role: 'Developer',
     description:
       'Working on application development with a current focus on React Native mobile experiences, while applying my web development background where needed.',
-    skills: ['React Native', 'JavaScript', 'Expo', 'React', 'NativeWind'],
+    skills: ['React Native', 'JavaScript', 'Expo', 'React', 'NativeWind', 'TanStack Query'],
   },
   {
     date: 'Jan 2026 to Mar 2026',
@@ -110,15 +111,15 @@ const experience = [
     role: 'React Native Internship',
     description:
       'Focused specifically on React Native mobile development, building UI screens and features with Expo and NativeWind while strengthening component-based development practices.',
-    skills: ['React Native', 'Expo', 'NativeWind', 'React'],
+    skills: ['React Native', 'Expo', 'NativeWind', 'React', 'TanStack Query'],
   },
   {
     date: 'Nov 2024 to Feb 2025',
     company: 'XDezo Technologies, Pokhara',
     role: 'Developer Intern',
     description:
-      'Built foundational experience with HTML, CSS, JavaScript, Bootstrap, and basic Django through internship tasks and project work.',
-    skills: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Basic Django'],
+      'Built foundational experience with HTML, CSS, JavaScript, Bootstrap, PostgreSQL, and Django through internship tasks and project work.',
+    skills: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'PostgreSQL', 'Django'],
   },
 ];
 
@@ -262,48 +263,6 @@ function App() {
     const supportsHover = window.matchMedia('(hover: hover)').matches;
     if (prefersReducedMotion || !supportsHover) return undefined;
 
-    const orbs = Array.from(document.querySelectorAll('.ambient-bg__orb')).map((el) => ({
-      el,
-      depth: parseFloat(el.dataset.depth) || 30,
-      ease: parseFloat(el.dataset.ease) || 0.05,
-      x: 0,
-      y: 0,
-    }));
-    if (!orbs.length) return undefined;
-
-    let mouseX = 0.5;
-    let mouseY = 0.5;
-    let rafId;
-
-    const handleMouseMove = (event) => {
-      mouseX = event.clientX / window.innerWidth;
-      mouseY = event.clientY / window.innerHeight;
-    };
-
-    const tick = () => {
-      orbs.forEach((orb) => {
-        const targetX = (mouseX - 0.5) * orb.depth;
-        const targetY = (mouseY - 0.5) * orb.depth;
-        orb.x += (targetX - orb.x) * orb.ease;
-        orb.y += (targetY - orb.y) * orb.ease;
-        orb.el.style.transform = `translate3d(${orb.x.toFixed(1)}px, ${orb.y.toFixed(1)}px, 0)`;
-      });
-      rafId = window.requestAnimationFrame(tick);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    rafId = window.requestAnimationFrame(tick);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const supportsHover = window.matchMedia('(hover: hover)').matches;
-    if (prefersReducedMotion || !supportsHover) return undefined;
-
     const cleanups = [];
 
     const attachTilt = (el, max, lift) => {
@@ -410,11 +369,7 @@ function App() {
       <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="scroll-progress" ref={progressRef} aria-hidden="true"></div>
 
-      <div className="ambient-bg" aria-hidden="true">
-        <span className="ambient-bg__orb ambient-bg__orb--1" data-depth="90" data-ease="0.03"></span>
-        <span className="ambient-bg__orb ambient-bg__orb--2" data-depth="-130" data-ease="0.045"></span>
-        <span className="ambient-bg__orb ambient-bg__orb--3" data-depth="170" data-ease="0.07"></span>
-      </div>
+      <FluidBackground />
 
       {loaderVisible && (
         <div className="loader-container" id="loader">
@@ -539,18 +494,17 @@ function App() {
               <div className="hero__visual">
                 <div className="hero__avatar-wrap">
                   <div className="hero__avatar-glow" aria-hidden="true"></div>
-                  <div className="hero__avatar-ring">
-                    <img
-                      src="/images/port.webp"
-                      srcSet="/images/port.webp 200w"
-                      sizes="(max-width: 768px) 150px, 200px"
-                      alt="Amul Baidhya, React Native Developer in Nepal"
-                      loading="lazy"
-                      width="200"
-                      height="200"
-                      className="image avatar"
-                    />
-                  </div>
+                  <div className="hero__avatar-ring" aria-hidden="true"></div>
+                  <img
+                    src="/images/port.webp"
+                    srcSet="/images/port.webp 200w"
+                    sizes="(max-width: 768px) 150px, 200px"
+                    alt="Amul Baidhya, React Native Developer in Nepal"
+                    loading="lazy"
+                    width="200"
+                    height="200"
+                    className="image avatar"
+                  />
                   {heroFloats.map((tech, idx) => (
                     <span key={tech} className={`chip hero__float hero__float--${idx + 1}`}>{tech}</span>
                   ))}
