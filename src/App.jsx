@@ -5,6 +5,26 @@ const headerMessages = ['A React Native Developer', 'Welcome to My Portfolio'];
 
 const projects = [
   {
+    title: 'Tipa - Inventory Manager',
+    image: '/images/iconTIPA.png',
+    alt: 'Tipa - Inventory Manager mobile app built with React Native and Django',
+    tech: ['React Native', 'Expo', 'Django', 'PostgreSQL', 'iOS', 'Android'],
+    summary: 'Inventory management app for small businesses, tracking stock across multiple storage locations.',
+    description:
+      'Built the React Native (Expo) frontend for Tipa, an inventory app that lets small businesses track stock levels, items, and transfers across multiple storage locations from one place. Designed the UI, integrated it with the backend APIs, and shipped releases to both the App Store and Google Play.',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.codexpokhara.tipa&hl=en_US',
+  },
+  {
+    title: 'Chanco',
+    image: '/images/chanco.png',
+    alt: 'Chanco - B2B order management mobile app built with React Native',
+    tech: ['React Native', 'Expo', 'Django Channels', 'Leaflet'],
+    summary: 'B2B order management platform with real-time notifications and dynamic permissions.',
+    description:
+      "Contributed to the React Native (Expo) frontend of Chanco, a B2B order management platform, building out features like related parties, schemes, and notifications. Integrated Expo push notifications and Django Channels for real-time updates, and added map integration for related parties using Leaflet.",
+    websiteUrl: 'https://chanco.codex.com.np/',
+  },
+  {
     title: 'Room Rental',
     subtitle: '(Academic Task)',
     image: '/images/roomrental.webp',
@@ -17,16 +37,6 @@ const projects = [
     link: 'https://github.com/amulyasb/RoomRental',
   },
   {
-    title: 'Django Todo List',
-    image: '/images/todo.webp',
-    alt: 'Django Todo App - Task management with Python/Django',
-    tech: ['HTML5', 'CSS3', 'Bootstrap', 'PostgreSQL', 'Django'],
-    summary: 'Todo app with user authentication, task management, and completion tracking.',
-    description:
-      'A full-featured Todo application with user authentication, task management, and completion tracking.',
-    link: 'https://github.com/amulyasb/todo_Project',
-  },
-  {
     title: 'Trip Manager',
     image: '/images/TripManager.webp',
     alt: 'Trip Manager mobile app built with React Native',
@@ -36,16 +46,13 @@ const projects = [
       'A React Native mobile app for managing trips with itinerary organization, activity planning, and expense tracking.',
     link: 'https://github.com/amulyasb/TripManagerMobile',
   },
-  {
-    title: 'Basic Calculator',
-    image: '/images/calculator.webp',
-    alt: 'Basic Calculator using python djnago. html, css, js, bootstrap',
-    tech: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: 'A functional calculator supporting basic arithmetic with an intuitive interface.',
-    description:
-      'A functional calculator supporting basic arithmetic operations with intuitive interface.',
-    link: 'https://github.com/amulyasb/SimpleCalculator',
-  },
+];
+
+const projectLinkButtons = [
+  { key: 'playStoreUrl', icon: 'fab fa-google-play', label: 'View on Play Store' },
+  { key: 'appStoreUrl', icon: 'fab fa-app-store-ios', label: 'View on App Store' },
+  { key: 'websiteUrl', icon: 'fas fa-arrow-up-right-from-square', label: 'View Live Site' },
+  { key: 'link', icon: 'fab fa-github', label: 'View on GitHub' },
 ];
 
 const navLinks = [
@@ -56,7 +63,7 @@ const navLinks = [
   { id: 'contact', label: 'Contact' },
 ];
 
-const heroTech = ['React Native', 'Expo', 'NativeWind', 'TanStack Query', 'React', 'JavaScript', 'Bootstrap', 'Django', 'PostgreSQL'];
+const heroTech = ['React Native', 'Expo', 'NativeWind', 'React', 'JavaScript', 'Bootstrap', 'Django', 'PostgreSQL'];
 
 const heroFloats = ['React Native', 'Expo', 'NativeWind'];
 
@@ -71,7 +78,7 @@ const quickFacts = [
   { icon: 'fa-envelope', label: 'Email', value: 'amul.baidhya123@gmail.com' },
   { icon: 'fa-map-marker-alt', label: 'Location', value: 'Pokhara, Nepal' },
   { icon: 'fa-phone', label: 'Phone', value: '9860578607' },
-  { icon: 'fa-briefcase', label: 'Experience', value: '1.5 Years' },
+  { icon: 'fa-briefcase', label: 'Experience', value: '1 Years' },
   { icon: 'fa-graduation-cap', label: 'Education', value: "Bachelor's in BIT" },
 ];
 
@@ -100,22 +107,25 @@ const experience = [
   {
     date: '2025 to Present',
     company: 'Codex Pokhara',
-    role: 'Developer',
+    logo: '/images/codex.png',
+    role: 'Mobile Application Developer',
     description:
       'Working on application development with a current focus on React Native mobile experiences, while applying my web development background where needed.',
-    skills: ['React Native', 'JavaScript', 'Expo', 'React', 'NativeWind', 'TanStack Query'],
+    skills: ['React Native', 'Expo', 'React', 'NativeWind', 'Django Channels'],
   },
   {
     date: 'Jan 2026 to Mar 2026',
     company: 'Codex Pokhara',
+    logo: '/images/codex.png',
     role: 'React Native Internship',
     description:
       'Focused specifically on React Native mobile development, building UI screens and features with Expo and NativeWind while strengthening component-based development practices.',
-    skills: ['React Native', 'Expo', 'NativeWind', 'React', 'TanStack Query'],
+    skills: ['React Native', 'Expo', 'NativeWind', 'React'],
   },
   {
     date: 'Nov 2024 to Feb 2025',
     company: 'XDezo Technologies, Pokhara',
+    logo: '/images/xdezo.png',
     role: 'Developer Intern',
     description:
       'Built foundational experience with HTML, CSS, JavaScript, Bootstrap, PostgreSQL, and Django through internship tasks and project work.',
@@ -598,7 +608,19 @@ function App() {
                 >
                   <span className="timeline__marker"><i className="fas fa-briefcase" aria-hidden="true"></i></span>
                   <div className="timeline__card glass">
-                    <span className="chip timeline__date">{item.date}</span>
+                    <div className="timeline__date-row">
+                      <span className="chip timeline__date">{item.date}</span>
+                      {item.logo ? (
+                        <img
+                          src={item.logo}
+                          alt={`${item.company} logo`}
+                          className="timeline__logo"
+                          onError={(event) => {
+                            event.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      ) : null}
+                    </div>
                     <h4 className="timeline__company">{item.company}</h4>
                     <h5 className="timeline__role">{item.role}</h5>
                     <p className="timeline__desc">{item.description}</p>
@@ -765,10 +787,22 @@ function App() {
               <i className="fas fa-xmark" aria-hidden="true"></i>
             </button>
             <div className="project-modal__body">
-              <h3 className="project-modal__title" id="project-modal-title">
-                {activeProject.title}
-                {activeProject.subtitle ? <small>{activeProject.subtitle}</small> : null}
-              </h3>
+              <div className="project-modal__title-row">
+                {activeProject.image ? (
+                  <img
+                    src={activeProject.image}
+                    alt={activeProject.alt || ''}
+                    className="project-modal__icon"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none';
+                    }}
+                  />
+                ) : null}
+                <h3 className="project-modal__title" id="project-modal-title">
+                  {activeProject.title}
+                  {activeProject.subtitle ? <small>{activeProject.subtitle}</small> : null}
+                </h3>
+              </div>
               <div className="project-modal__tags">
                 {activeProject.tech.map((tech) => (
                   <span key={tech} className="tag">{tech}</span>
@@ -776,10 +810,20 @@ function App() {
               </div>
               <p className="project-modal__desc">{activeProject.description}</p>
               <div className="project-modal__actions">
-                <a href={activeProject.link} target="_blank" className="btn btn--primary" rel="noopener">
-                  <i className="fab fa-github" aria-hidden="true"></i>
-                  View on GitHub
-                </a>
+                {projectLinkButtons
+                  .filter((btn) => activeProject[btn.key])
+                  .map((btn) => (
+                    <a
+                      key={btn.key}
+                      href={activeProject[btn.key]}
+                      target="_blank"
+                      className="btn btn--primary"
+                      rel="noopener"
+                    >
+                      <i className={btn.icon} aria-hidden="true"></i>
+                      {btn.label}
+                    </a>
+                  ))}
                 <button className="btn btn--ghost" type="button" onClick={() => setActiveProject(null)}>
                   Close
                 </button>
