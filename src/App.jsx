@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import FluidBackground from './FluidBackground.jsx';
 
-const headerMessages = ['A React Native Developer', 'Welcome to My Portfolio'];
+const headerMessages = ['A Mobile Application Developer', 'Welcome to My Portfolio'];
 
 const projects = [
   {
@@ -140,7 +140,7 @@ const stats = [
 
 function App() {
   const [loaderVisible, setLoaderVisible] = useState(true);
-  const [subtitle, setSubtitle] = useState('A React Native Developer');
+  const [subtitle, setSubtitle] = useState('A Mobile Application Developer');
   const [navOpen, setNavOpen] = useState(false);
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [theme, setTheme] = useState('dark');
@@ -509,7 +509,7 @@ function App() {
                     src="/images/port.webp"
                     srcSet="/images/port.webp 200w"
                     sizes="(max-width: 768px) 150px, 200px"
-                    alt="Amul Baidhya, React Native Developer in Nepal"
+                    alt="Amul Baidhya, Mobile App Developer in Nepal"
                     loading="lazy"
                     width="200"
                     height="200"
@@ -533,7 +533,7 @@ function App() {
                   <h2 className="section__title">Get to know a little about me</h2>
                 </div>
                 <div className="about__paragraphs" data-reveal="true" ref={registerReveal}>
-                  <p className="about__lead">I&apos;m Amul Baidhya, a React Native developer focused on building clean and practical mobile apps.</p>
+                  <p className="about__lead">I&apos;m Amul Baidhya, a Mobile Application developer focused on building clean and practical mobile apps.</p>
                   <p>I started with HTML, CSS, JavaScript, Bootstrap, and basic Django during college, which gave me a strong foundation in UI and web fundamentals.</p>
                   <p>Now I&apos;m focused on React Native and cross-platform app development, with attention to maintainable code and smooth user experience.</p>
                   <p>I keep learning and improving through real projects, and I enjoy turning ideas into reliable products.</p>
@@ -734,7 +734,7 @@ function App() {
           <div className="footer__inner">
             <div>
               <div className="footer__brand">Amul Baidhya</div>
-              <p className="footer__tagline">React Native Developer, Pokhara, Nepal</p>
+              <p className="footer__tagline">Mobile App Developer, Pokhara, Nepal</p>
             </div>
             <ul className="footer__nav">
               {navLinks.map((link) => (
