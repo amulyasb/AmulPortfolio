@@ -13,6 +13,7 @@ const projects = [
     description:
       'Built the React Native (Expo) frontend for Tipa, an inventory app that lets small businesses track stock levels, items, and transfers across multiple storage locations from one place. Designed the UI, integrated it with the backend APIs, and shipped releases to both the App Store and Google Play.',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.codexpokhara.tipa&hl=en_US',
+    appStoreUrl: 'https://apps.apple.com/in/app/tipa-inventory-manager/id6793031891',
   },
   {
     title: 'Chanco',
